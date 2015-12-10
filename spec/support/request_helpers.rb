@@ -21,7 +21,6 @@ module Request
   		api_header
   		api_response_format
   	end
-
   end
 
 
