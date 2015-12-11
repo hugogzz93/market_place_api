@@ -7,9 +7,10 @@ class Api::V1::ProductsController < ApplicationController
 	end
 
 	def index
-		products = params[:product_ids].present? ? Product.find(params[:product_ids]) : Product.all
+		# products = params[:product_ids].present? ? Product.find(params[:product_ids]) : Product.all
 		# respond_with products, status: 200
-		render json: products, status: 200
+		# render json: products, status: 200
+		respond_with Product.search(params)
 	end
 
 	def create
