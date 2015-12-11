@@ -13,8 +13,8 @@ RSpec.describe Authenticable do
     before do
       @user = FactoryGirl.create :user
       request.headers["Authorization"] = @user.auth_token
-      authentication.stub(:request).and_return(request)
-      # expect(authentication.request).to eql request
+      # authentication.stub(:request).and_return(request)
+      allow(Devise).to receive(:friendly_token).and_return("auniquetoken123")
     end
     it "returns the user from the authorization header" do
       expect(authentication.current_user.auth_token).to eql @user.auth_token
