@@ -25,7 +25,7 @@ SabisuRails.setup do |config|
   config.resources = [:users, :products]
 
   #Default resource
-  config.default_resource = :users
+  config.default_resource = :products
 
   # Application name
   # mattr_accessor :app_name
