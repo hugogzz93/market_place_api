@@ -45,6 +45,7 @@ gem 'simple_form'
 group :test do
 	gem 'rspec-rails'
 	gem "shoulda-matchers"
+  gem "email_spec"
 end
 
 group :development, :test do
