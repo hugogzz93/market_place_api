@@ -17,15 +17,21 @@ RSpec.describe Order, type: :model do
 
   describe "#set_total" do
   	before(:each) do
-  		product_1 = FactoryGirl.create :product, price: 100
-  		product_2 = FactoryGirl.create :product, price: 85
+      product_1 = FactoryGirl.create :product, price: 100
+      product_2 = FactoryGirl.create :product, price: 85
 
-  		@order = FactoryGirl.build :order, product_ids: [product_1.id, product_2.id]
-  	end
+      placement_1 = FactoryGirl.build :placement, product: product_1, quantity: 3
+      placement_2 = FactoryGirl.build :placement, product: product_2, quantity: 15
 
-  	it "returns the total maount to pay for the products" do
-  		expect{@order.set_total!}.to change{@order.total}.from(0).to(185)
-  	end
+      @order = FactoryGirl.build :order
+
+      @order.placements << placement_1
+      @order.placements << placement_2
+    end
+
+    it "returns the total amount to pay for the products" do
+      expect{@order.set_total!}.to change{@order.total.to_f}.from(0).to(1575)
+    end
   end
 
   	describe "#build_placements_with_product_ids_and_quantities" do
